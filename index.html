@@ -89,6 +89,14 @@
             h1 { font-size: 2.8rem; }
             section { padding: 30px 20px; margin: 20px 15px; }
             nav a { margin: 0 10px; font-size: 0.9rem; }
+            
+            /* Make temple sections stack on mobile */
+            #places > div > div[style*="display: flex"] {
+                flex-direction: column !important;
+            }
+            #places > div > div[style*="display: grid"] {
+                grid-template-columns: 1fr !important;
+            }
         }
     </style>
 </head>
@@ -160,15 +168,18 @@
             <img src="work3.jpg" class="timeline-img">
             <div class="timeline-text">
                 <h3>๕. บทบาทผู้นำและที่ปรึกษา</h3>
-                <p>เป็นประธานหลักสูตร พสบ. รุ่นที่ 6 ประธานคณะกรรมการวิทยุเครื่องแดง และที่ปรึกษามหาวิทยาลัยราชภัฏสงขลา</p>
+                <p>เป็นประธานหลักสูตร พสบ. รุ่นที่ 6 ประธานคณะกรรมการวิทยุเครื่องแดง อดีตที่ปรึกษาด้านการจราจร และที่ปรึกษามหาวิทยาลัยราชภัฏสงขลา</p>
             </div>
         </div>
 
         <div class="timeline-item">
             <img src="work4.jpg" class="timeline-img">
             <div class="timeline-text">
-                <h3>๖. งานทำนุบำรุงศาสนา</h3>
-                <p>คุณแม่บงกชอุทิศตนส่งเสริมกิจกรรมทางศาสนาในพื้นที่จังหวัดชายแดนใต้ เพื่อเสริมสร้างหลักคุณธรรมและจริยธรรมแก่ประชาชน</p>
+                <h3>๖. งานทำนุบำรุงศาสนาและสาธารณประโยชน์</h3>
+                <p style="margin-bottom: 15px;">นอกจากนี้ คุณแม่บงกชเป็นผู้มีจิตอาสาและมีความศรัทธาในพระพุทธศาสนา ได้อุทิศตนในการทำนุบำรุงและส่งเสริมกิจกรรมทางพระพุทธศาสนาในพื้นที่จังหวัดชายแดนใต้อย่างต่อเนื่อง โดยมุ่งเน้นการเสริมสร้างหลักคุณธรรมและจริยธรรมแก่ประชาชนในพื้นที่</p>
+                <p style="margin-bottom: 10px; font-weight: 600;">ผลงานด้านการทำนุบำรุงศาสนาและสาธารณประโยชน์ที่สำคัญ ได้แก่</p>
+                <p style="margin-bottom: 10px;">• การริเริ่มและดำเนินการสร้างองค์จำลองสมเด็จพระเจ้าตากสินมหาราช ณ วัดเขากง จังหวัดนราธิวาส เพื่อเป็นศูนย์รวมจิตใจของพุทธศาสนิกชน และเป็นอนุสรณ์ทางประวัติศาสตร์</p>
+                <p>• การริเริ่มและดำเนินการสร้างองค์เจ้าแม่ทับทิม ณ สถานีเรือสมุย ฐานทัพเรือสงขลา ทัพเรือภาคที่ 2 อำเภอเกาะสมุย จังหวัดสุราษฎร์ธานี เพื่อเป็นที่ยึดเหนี่ยวทางจิตใจของข้าราชการทหารเรือ ประชาชน และผู้มีจิตศรัทธาทั่วไป</p>
             </div>
         </div>
     </section>
@@ -180,32 +191,45 @@
         <div style="margin-bottom: 60px;">
             <h3 style="text-align: center; color: #8d6e63; font-size: 2rem; margin-bottom: 25px;">วัดเขากง จังหวัดนราธิวาส</h3>
             
-            <div style="margin-bottom: 25px;">
-                <img src="work4.jpg" style="width: 100%; max-width: 700px; display: block; margin: 0 auto; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.12);">
-            </div>
-            
-            <div class="tribute-card">
-                <p style="line-height: 1.8; margin-bottom: 20px;">
-                    วัดเขากงตั้งอยู่ที่ตำบลลำภู อำเภอเมืองนราธิวาส เป็นวัดเก่าแก่ที่มีประวัติยาวนานและเป็นพุทธมณฑลแห่งเดียวของภาคใต้ ภายในวัดประดิษฐานพระพุทธทักษิณมิ่งมงคล ซึ่งเป็นพระพุทธรูปกลางแจ้งองค์ใหญ่ที่สุดในภาคใต้
-                </p>
-                <p style="line-height: 1.8; margin-bottom: 20px;">
-                    คุณแม่บงกชได้อุทิศตนและริเริ่มโครงการสร้างพระบรมราชานุสาวรีย์สมเด็จพระเจ้าตากสินมหาราช ณ ลานพระบรมราชานุสาวรีย์ภายในวัดเขากง รูปหล่อมีหน้าตักกว้าง 9 นิ้ว น้ำหนัก 350 กิโลกรัม โครงการนี้สะท้อนถึงจิตสำนึกรักชาติและความเคารพในพระมหากรุณาธิคุณของสมเด็จพระเจ้าตากสินมหาราช พระมหากษัตริย์ผู้ทรงกอบกู้เอกราชของชาติไทย
-                </p>
-                <p style="line-height: 1.8;">
-                    คุณแม่บงกชได้ทุ่มเทแรงกาย แรงใจ และทรัพย์สินส่วนตัวเพื่อให้โครงการนี้สำเร็จลุล่วง โดยมุ่งหวังให้วัดเขากงเป็นศูนย์รวมจิตใจของประชาชนในพื้นที่จังหวัดชายแดนใต้ และเป็นสถานที่ปลูกฝังคุณธรรม จริยธรรม รวมถึงความรักชาติแก่คนรุ่นใหม่
-                </p>
+            <div style="display: flex; gap: 30px; align-items: flex-start; margin-bottom: 25px;">
+                <div style="flex: 1;">
+                    <img src="work4.jpg" style="width: 100%; height: auto; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.12);">
+                </div>
+                <div style="flex: 1;">
+                    <p style="line-height: 1.8; margin-bottom: 20px;">
+                        วัดเขากงตั้งอยู่ที่ตำบลลำภู อำเภอเมืองนราธิวาส เป็นวัดเก่าแก่ที่มีประวัติยาวนานและเป็นพุทธมณฑลแห่งเดียวของภาคใต้ ภายในวัดประดิษฐานพระพุทธทักษิณมิ่งมงคล ซึ่งเป็นพระพุทธรูปกลางแจ้งองค์ใหญ่ที่สุดในภาคใต้
+                    </p>
+                    <p style="line-height: 1.8; margin-bottom: 20px;">
+                        คุณแม่บงกชได้อุทิศตนและริเริ่มโครงการสร้างพระบรมราชานุสาวรีย์สมเด็จพระเจ้าตากสินมหาราช ณ ลานพระบรมราชานุสาวรีย์ภายในวัดเขากง รูปหล่อมีหน้าตักกว้าง 9 นิ้ว น้ำหนัก 350 กิโลกรัม โครงการนี้สะท้อนถึงจิตสำนึกรักชาติและความเคารพในพระมหากรุณาธิคุณของสมเด็จพระเจ้าตากสินมหาราช พระมหากษัตริย์ผู้ทรงกอบกู้เอกราชของชาติไทย
+                    </p>
+                    <p style="line-height: 1.8;">
+                        คุณแม่บงกชได้ทุ่มเทแรงกาย แรงใจ และทรัพย์สินส่วนตัวเพื่อให้โครงการนี้สำเร็จลุล่วง โดยมุ่งหวังให้วัดเขากงเป็นศูนย์รวมจิตใจของประชาชนในพื้นที่จังหวัดชายแดนใต้ และเป็นสถานที่ปลูกฝังคุณธรรม จริยธรรม รวมถึงความรักชาติแก่คนรุ่นใหม่
+                    </p>
+                </div>
             </div>
 
-            <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
-                <a href="https://www.youtube.com/watch?v=4g8XG743pys" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
-                    <img src="https://img.youtube.com/vi/4g8XG743pys/maxresdefault.jpg" 
-                        style="width: 100%; height: auto; display: block;"
-                        onerror="this.src='https://img.youtube.com/vi/4g8XG743pys/hqdefault.jpg'">
-                    <div style="padding: 15px; text-align: center; background: #f5f5f5;">
-                        <p style="color: var(--deep-brown); font-weight: 600; margin: 0;">▶️ พิธีการภายในวัด</p>
-                        <p style="color: #666; font-size: 0.9rem; margin: 5px 0 0 0;">คลิกเพื่อดูใน YouTube</p>
-                    </div>
-                </a>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
+                    <a href="https://www.youtube.com/watch?v=4g8XG743pys" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
+                        <img src="https://img.youtube.com/vi/4g8XG743pys/0.jpg" 
+                            style="width: 100%; height: auto; display: block;">
+                        <div style="padding: 15px; text-align: center; background: #f5f5f5;">
+                            <p style="color: var(--deep-brown); font-weight: 600; margin: 0;">▶️ เพลงคุณบงกช กาญจนแก้ว</p>
+                            <p style="color: #666; font-size: 0.9rem; margin: 5px 0 0 0;">คลิกเพื่อดูใน YouTube</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.08);">
+                    <a href="https://www.youtube.com/watch?v=BTSXNddyPtM" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
+                        <img src="https://img.youtube.com/vi/BTSXNddyPtM/0.jpg" 
+                            style="width: 100%; height: auto; display: block;">
+                        <div style="padding: 15px; text-align: center; background: #f5f5f5;">
+                            <p style="color: var(--deep-brown); font-weight: 600; margin: 0;">▶️ ทัวร์นราธิวาส โดย คุณบงกช กาญจนแก้ว</p>
+                            <p style="color: #666; font-size: 0.9rem; margin: 5px 0 0 0;">คลิกเพื่อดูใน YouTube</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -213,9 +237,11 @@
         <div>
             <h3 style="text-align: center; color: #8d6e63; font-size: 2rem; margin-bottom: 25px;">ศาลเจ้าแม่ทับทิม สถานีเรือสมุย</h3>
             
-            <div class="tribute-card" style="padding: 0; overflow: hidden;">
-                <img src="https://images.unsplash.com/photo-1540611025311-01df3cef54b5?auto=format&fit=crop&w=800" width="100%" style="max-height: 400px; object-fit: cover;">
-                <div style="padding: 30px;">
+            <div style="display: flex; gap: 30px; align-items: flex-start;">
+                <div style="flex: 1;">
+                    <img src="work6.jpg" style="width: 100%; height: auto; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.12);">
+                </div>
+                <div style="flex: 1;">
                     <p style="line-height: 1.8; margin-bottom: 20px;">
                         ศาลเจ้าแม่ทับทิมที่สถานีเรือสมุยเป็นสถานที่ศักดิ์สิทธิ์ที่คุณแม่บงกชได้อุทิศตนสร้างขึ้นเพื่อส่วนรวม เจ้าแม่ทับทิมเป็นเทพธิดาแห่งท้องทะเลที่ชาวประมงและชาวเรือนับถือ เพื่อขอพรให้เดินทางโดยสวัสดิภาพและประกอบอาชีพได้อย่างเจริญรุ่งเรือง
                     </p>
