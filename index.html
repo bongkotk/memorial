@@ -33,9 +33,6 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
         }
 
         nav {
@@ -78,10 +75,168 @@
         .timeline-text h3 { color: #8d6e63; font-size: 1.6rem; border-bottom: 2px solid #e6d5ac; display: inline-block; margin-bottom: 12px; }
 
         .tribute-card { background: white; padding: 25px; border-radius: 20px; margin-bottom: 20px; border-left: 8px solid #f3e5ab; box-shadow: 0 3px 10px rgba(0,0,0,0.04); }
+        .tribute-card.with-photo { display: block; }
+        .tribute-photo { 
+            width: 200px; 
+            height: 200px; 
+            border-radius: 12px; 
+            object-fit: cover; 
+            cursor: pointer; 
+            transition: transform 0.3s ease;
+            margin-top: 15px;
+            display: block;
+        }
+        .tribute-photo:hover { transform: scale(1.05); }
+        .tribute-content { width: 100%; }
 
         #tribute-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
 
+        /* Form Styles */
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--deep-brown); }
+        .form-group input[type="text"],
+        .form-group textarea { 
+            width: 100%; 
+            padding: 12px 15px; 
+            border: 2px solid var(--cream-shade); 
+            border-radius: 12px; 
+            font-family: 'Sarabun', sans-serif; 
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        .form-group input[type="text"]:focus,
+        .form-group textarea:focus { 
+            outline: none; 
+            border-color: var(--deep-brown); 
+            box-shadow: 0 0 0 3px rgba(93, 64, 55, 0.1);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        
+        .file-upload-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            border: 2px dashed var(--cream-shade);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .file-upload-label:hover {
+            border-color: var(--deep-brown);
+            background: var(--cream-light);
+        }
+        .file-upload-input { display: none; }
+        .file-preview {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .file-preview img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .file-info {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .remove-file {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--deep-brown);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Sarabun', sans-serif;
+        }
+        .submit-btn:hover:not(:disabled) {
+            background: #4e342e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-message {
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+        .form-message.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 2px solid #4caf50;
+        }
+        .form-message.error {
+            background: #ffebee;
+            color: #c62828;
+            border: 2px solid #f44336;
+        }
+
+        .honeypot { position: absolute; left: -9999px; }
+
         footer { background: var(--deep-brown); color: #fffde7; text-align: center; padding: 50px; margin-top: 100px; }
+
+        /* Photo Modal */
+        .photo-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            align-items: center;
+            justify-content: center;
+        }
+        .photo-modal.active { display: flex; }
+        .photo-modal img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 8px;
+        }
+        .photo-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
         @media (max-width: 768px) {
             .timeline-item { flex-direction: column !important; }
@@ -90,7 +245,6 @@
             section { padding: 30px 20px; margin: 20px 15px; }
             nav a { margin: 0 10px; font-size: 0.9rem; }
             
-            /* Make temple sections stack on mobile */
             #places > div > div[style*="display: flex"] {
                 flex-direction: column !important;
             }
@@ -276,15 +430,41 @@
         <hr style="margin: 50px 0; border: 0; border-top: 2px solid var(--cream-shade);">
 
         <h2 style="font-size: 2.2rem;">สมุดลงนามไว้อาลัย</h2>
-        <div style="width: 100%; max-width: 640px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); overflow: hidden;">
-            <iframe 
-                src="https://docs.google.com/forms/d/e/1FAIpQLSdrK51bOt_sn7wcsjvjQvRAVzyF1rgV6A6jHs0TB8jR_hZ8Ng/viewform?embedded=true&hl=th"
-                width="100%" 
-                height="600" 
-                frameborder="0" 
-                marginheight="0" 
-                marginwidth="0"
-                style="display: block;">กำลังโหลด…</iframe>
+        
+        <div id="form-message" class="form-message"></div>
+
+        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <form id="tribute-form">
+                <!-- Honeypot for spam protection -->
+                <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off">
+                
+                <div class="form-group">
+                    <label for="name">ชื่อ-นามสกุล *</label>
+                    <input type="text" id="name" name="name" required maxlength="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">ข้อความไว้อาลัย *</label>
+                    <textarea id="message" name="message" required maxlength="1000"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>รูปภาพระลึก (ไม่บังคับ)</label>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">JPG หรือ PNG เท่านั้น, ขนาดไม่เกิน 5MB</p>
+                    <div class="file-upload-wrapper">
+                        <label for="photo" class="file-upload-label">
+                            <span>📷</span>
+                            <span id="file-label-text">เลือกรูปภาพ</span>
+                        </label>
+                        <input type="file" id="photo" name="photo" class="file-upload-input" accept="image/jpeg,image/png">
+                    </div>
+                    <div id="file-preview" class="file-preview"></div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submit-btn">
+                    ส่งข้อความไว้อาลัย
+                </button>
+            </form>
         </div>
     </section>
 
@@ -292,11 +472,165 @@
         <p>สร้างขึ้นเพื่อระลึกถึงพระคุณ คุณแม่บงกช กาญจนแก้ว | โดยครอบครัวกาญจนแก้ว</p>
     </footer>
 
+    <!-- Photo Modal -->
+    <div id="photo-modal" class="photo-modal">
+        <span class="photo-modal-close">&times;</span>
+        <img id="modal-image" src="" alt="รูปภาพระลึก">
+    </div>
+
     <script>
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCAyu-ZPHT-b6VQp4VvnxoLnLSO_t28fA26VH0yMmaBif9I4s1drMyWdhpEd7eZlF0yQ/exec';        
+        // Configuration - REPLACE WITH YOUR DEPLOYED APP SCRIPT URL
+        // Use the SAME URL for both reading and writing
+        const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxypiD2BPYBHndg1By35ouV6xNVBz8119BpK1FJf0Dsn3AYXDjRgC0yLFUnG1T39zE0Ng/exec';
+        const SUBMIT_URL = APP_SCRIPT_URL;
+        const READ_URL = APP_SCRIPT_URL;
+        
         let allTributes = [];
         let currentPage = 1;
         const tributesPerPage = 6;
+        let formStartTime = Date.now();
+
+        // File upload handling
+        const photoInput = document.getElementById('photo');
+        const filePreview = document.getElementById('file-preview');
+        const fileLabelText = document.getElementById('file-label-text');
+
+        photoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) {
+                filePreview.innerHTML = '';
+                fileLabelText.textContent = 'เลือกรูปภาพ';
+                return;
+            }
+
+            if (!file.type.match('image/jpeg') && !file.type.match('image/png')) {
+                alert('กรุณาเลือกไฟล์ JPG หรือ PNG เท่านั้น');
+                photoInput.value = '';
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('ขนาดไฟล์ต้องไม่เกิน 5MB');
+                photoInput.value = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const fileSize = (file.size / 1024).toFixed(1);
+                filePreview.innerHTML = `
+                    <img src="${e.target.result}" alt="ตัวอย่างรูปภาพ">
+                    <div class="file-info">${file.name} (${fileSize} KB)</div>
+                    <button type="button" class="remove-file" onclick="removeFile()">ลบรูปภาพ</button>
+                `;
+                fileLabelText.textContent = 'เปลี่ยนรูปภาพ';
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function removeFile() {
+            photoInput.value = '';
+            filePreview.innerHTML = '';
+            fileLabelText.textContent = 'เลือกรูปภาพ';
+        }
+
+        // Form submission
+        document.getElementById('tribute-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submit-btn');
+            const formMessage = document.getElementById('form-message');
+            const honeypot = document.querySelector('input[name="website"]').value;
+
+            if (honeypot) {
+                console.log('Spam detected');
+                return;
+            }
+
+            const timeTaken = Date.now() - formStartTime;
+            if (timeTaken < 3000) {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+                return;
+            }
+
+            const name = document.getElementById('name').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const photoFile = photoInput.files[0];
+
+            if (!name || !message) {
+                showMessage('กรุณากรอกข้อมูลให้ครบถ้วน', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'กำลังส่ง...';
+            formMessage.style.display = 'none';
+
+            try {
+                let photoBase64 = null;
+                let photoName = null;
+
+                if (photoFile) {
+                    photoBase64 = await fileToBase64(photoFile);
+                    photoName = photoFile.name;
+                }
+
+                const response = await fetch(SUBMIT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        message: message,
+                        photo: photoBase64,
+                        photoName: photoName,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+
+                showMessage('ส่งข้อความเรียบร้อยแล้ว ขอบคุณสำหรับความทรงจำที่ดี', 'success');
+                
+                document.getElementById('tribute-form').reset();
+                removeFile();
+                formStartTime = Date.now();
+
+                setTimeout(() => {
+                    pullTributes();
+                }, 2000);
+
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'ส่งข้อความไว้อาลัย';
+            }
+        });
+
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const base64 = reader.result.split(',')[1];
+                    resolve(base64);
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function showMessage(text, type) {
+            const formMessage = document.getElementById('form-message');
+            formMessage.textContent = text;
+            formMessage.className = `form-message ${type}`;
+            formMessage.style.display = 'block';
+
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        }
 
         async function pullTributes() {
             const wall = document.getElementById('tribute-wall');
@@ -308,20 +642,17 @@
                 btn.disabled = true;
                 
                 const timestamp = new Date().getTime();
-                const response = await fetch(`${APPS_SCRIPT_URL}?t=${timestamp}`, {
+                const response = await fetch(`${READ_URL}?t=${timestamp}`, {
                     cache: 'no-store'
                 });
                 
                 if (!response.ok) throw new Error('ไม่สามารถโหลดข้อมูลได้');
                 
                 allTributes = await response.json();
-                allTributes.reverse(); // แสดงข้อความล่าสุดก่อน
+                allTributes.reverse();
                 
                 currentPage = 1;
                 displayTributes();
-                
-                const now = new Date().toLocaleTimeString('th-TH');
-                console.log(`โหลดสำเร็จ: ${allTributes.length} รายการ เวลา ${now}`);
                 
                 btn.innerHTML = `✓ อัพเดทแล้ว (${allTributes.length})`;
                 setTimeout(() => {
@@ -359,16 +690,27 @@
             
             tributesToShow.forEach(tribute => {
                 const card = document.createElement('div');
-                card.className = 'tribute-card';
-                card.style.margin = '0';
-                card.innerHTML = `
-                    <strong style="color: var(--deep-brown); font-size: 1.1rem;">${tribute.name}</strong>
-                    <p style="margin-top: 8px; line-height: 1.6;">${tribute.message}</p>
-                `;
+                
+                if (tribute.photoUrl) {
+                    card.className = 'tribute-card with-photo';
+                    card.innerHTML = `
+                        <div class="tribute-content">
+                            <strong style="color: var(--deep-brown); font-size: 1.1rem;">${tribute.name}</strong>
+                            <p style="margin-top: 8px; line-height: 1.6;">${tribute.message}</p>
+                        </div>
+                        <img src="${tribute.photoUrl}" alt="รูปภาพระลึก" class="tribute-photo" onclick="openPhotoModal('${tribute.photoUrl}')">
+                    `;
+                } else {
+                    card.className = 'tribute-card';
+                    card.innerHTML = `
+                        <strong style="color: var(--deep-brown); font-size: 1.1rem;">${tribute.name}</strong>
+                        <p style="margin-top: 8px; line-height: 1.6;">${tribute.message}</p>
+                    `;
+                }
+                
                 wall.appendChild(card);
             });
             
-            // แสดง pagination ถ้ามีมากกว่า 1 หน้า
             if (totalPages > 1) {
                 pagination.style.display = 'flex';
                 pageInfo.textContent = `หน้า ${currentPage} จาก ${totalPages}`;
@@ -395,13 +737,27 @@
                 }
             }
             displayTributes();
-            
-            // เลื่อนกลับขึ้นไปที่ด้านบนของ tribute wall
             document.getElementById('tributes').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        function openPhotoModal(photoUrl) {
+            const modal = document.getElementById('photo-modal');
+            const modalImg = document.getElementById('modal-image');
+            modal.classList.add('active');
+            modalImg.src = photoUrl;
+        }
+
+        document.querySelector('.photo-modal-close').addEventListener('click', function() {
+            document.getElementById('photo-modal').classList.remove('active');
+        });
+
+        document.getElementById('photo-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+
         window.addEventListener('load', pullTributes);
-        
         document.getElementById('refresh-btn').addEventListener('click', pullTributes);
         document.getElementById('prev-btn').addEventListener('click', () => goToPage('prev'));
         document.getElementById('next-btn').addEventListener('click', () => goToPage('next'));
@@ -414,7 +770,6 @@
             this.style.background = 'var(--deep-brown)';
         });
         
-        // Hover effects for pagination buttons
         [document.getElementById('prev-btn'), document.getElementById('next-btn')].forEach(btn => {
             btn.addEventListener('mouseover', function() {
                 if (!this.disabled) this.style.background = '#4e342e';
